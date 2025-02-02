@@ -22,6 +22,33 @@
  * @returns {boolean}
  */
 function hasCircularDependency(servicesMap) {
+    const visited = {};
+    const inProcess = {};
+
+    function dfs(service) {
+        if (inProcess[service]) return true;
+        if (visited[service]) return false;
+
+        inProcess[service] = true;
+        
+        for (let dep of servicesMap[service]) {
+            if (dfs(dep)) return true;
+        }
+        
+        inProcess[service] = false;
+        visited[service] = true;
+
+        return false;
+    }
+
+    for (let service in servicesMap) {
+        if (!visited[service]) {
+            if (dfs(service)) {
+                return true;
+            }
+        }
+    }
+
     return false;
 }
 

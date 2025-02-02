@@ -10,7 +10,17 @@
  * @returns {number[]}
  */
 function flatten(array) {
-    return undefined;
+    let result = [];
+    
+    for (let i = 0; i < array.length; i++) {
+        if (Array.isArray(array[i])) {
+            result = result.concat(flatten(array[i]));  // рекурсивно "распаковываем" вложенный массив
+        } else {
+            result.push(array[i]);
+        }
+    }
+    
+    return result;
 }
 
 module.exports = flatten;

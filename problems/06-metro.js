@@ -17,7 +17,14 @@
  * @returns {number}
  */
 function metro(x, y) {
-    return undefined;
+    const totalStations = 13;
+    
+    if (x === y) return 0;
+    
+    let directPath = Math.abs(x - y);
+    let reversePath = totalStations - directPath;
+    
+    return Math.min(directPath, reversePath) - 1;
 }
 
 module.exports = metro;

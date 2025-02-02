@@ -10,7 +10,21 @@
  * @returns {string}
  */
 function rle(value) {
-    return undefined;
+    if (!value) return "";
+    
+    let result = "";
+    let count = 1;
+    
+    for (let i = 0; i < value.length; i++) {
+        if (value[i] === value[i + 1]) {
+            count++;
+        } else {
+            result += (count > 1 ? count : "") + value[i];
+            count = 1;
+        }
+    }
+    
+    return result;
 }
 
 module.exports = rle;

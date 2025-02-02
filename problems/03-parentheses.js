@@ -16,7 +16,20 @@
  * @returns {boolean}
  */
 function parentheses(value) {
-    return undefined;
+    if (!value) return false;
+    
+    let balance = 0;
+    
+    for (let char of value) {
+        if (char === '(') {
+            balance++;
+        } else if (char === ')') {
+            balance--;
+            if (balance < 0) return false;
+        }
+    }
+    
+    return balance === 0;
 }
 
 module.exports = parentheses;
